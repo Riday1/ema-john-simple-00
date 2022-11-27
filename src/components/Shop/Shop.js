@@ -1,19 +1,52 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import './Shop.css'
 const Shop = () => {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([]);
+
     useEffect(() => {
         fetch('products.json')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
 
-    const handleAddToCart = (product) => {
+
+    useEffect(() => {
+        const storedCart = getStoredCart();
+        const savedCart = [];
+        for (const id in storedCart) {
+            const addedProduct = products.find(product => product.id === id)
+            if (addedProduct) {
+                addedProduct.quantity = storedCart[id];
+                savedCart.push(addedProduct);
+            }
+        }
+        setCart(savedCart);
+
+
+    }, [products])
+    const handleAddToCart = (selectedProduct) => {
+
+        const newCart = [];
+        const exists = cart.find(product => product.id === selectedProduct.id);
+        if (!exists) {
+            selectedProduct.quantity = 1;
+            newCart = [...cart, selectedProduct];
+        }
+        else {
+            const rest = cart.filter(product => product.id !== selectedProduct.id);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest, exists];
+        }
+
         // do not do this : cart.push(product)
-        const newCart = [...cart, product];
+
+        addToDb(selectedProduct.id)
         setCart(newCart);
+
     }
     return (
         <div className='shop-container'>
@@ -27,8 +60,7 @@ const Shop = () => {
                 }
             </div>
             <div className="cart-container">
-                <h2>Order summary</h2>
-                <p>selected items : {cart.length}</p>
+                <Cart cart={cart}></Cart>
             </div>
         </div>
     );
