@@ -44,7 +44,7 @@ const getStoredCart = () => {
         shoppingCart = JSON.parse(storedCart);
     }
 
-    return shoppingCart
+    return shoppingCart;
 
 }
 
