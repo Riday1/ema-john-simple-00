@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
@@ -36,7 +37,9 @@ const Order = () => {
                 }
             </div>
             <div className='cart-container'>
-                <Cart handleClearCart={handleClearCart} cart={cart}></Cart>
+                <Cart handleClearCart={handleClearCart} cart={cart}>
+                   
+                </Cart>
             </div>
         </div>
     );
