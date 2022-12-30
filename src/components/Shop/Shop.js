@@ -56,7 +56,7 @@ const Shop = () => {
         setCart(newCart);
 
     }
-    const handleDeleteCart = () => {
+    const handleClearCart = () => {
         setCart([]);
         deleteShoppingCart();
 
@@ -73,7 +73,7 @@ const Shop = () => {
                 }
             </div>
             <div className="cart-container">
-                <Cart handleDeleteCart={handleDeleteCart} cart={cart}></Cart>
+                <Cart handleClearCart={handleClearCart} cart={cart}></Cart>
             </div>
         </div>
     );

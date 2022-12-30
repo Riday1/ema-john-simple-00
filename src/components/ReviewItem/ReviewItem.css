@@ -1,0 +1,37 @@
+.review-item img {
+    width: 91px;
+    height: 91px;
+    border-radius: 6px;
+}
+
+.review-item {
+    display: flex;
+    width: 600px;
+    border: 1px solid rgb(202, 199, 199);
+    margin: 20px auto;
+    border-radius: 6px;
+    padding: 8px;
+
+}
+
+.review-item-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    justify-content: space-between;
+}
+
+.review-item-details p {
+    margin: 0px;
+
+}
+
+.remove-btn {
+    border: none;
+    background-color: rgb(250, 214, 148);
+    color: rgb(255, 0, 0);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
