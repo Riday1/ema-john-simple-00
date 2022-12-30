@@ -1,6 +1,7 @@
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import Inventory from './components/Inventory/Inventory';
 import Order from './components/Order/Order';
 import { productsAndCartLoader } from './components/ProductsAndCartLoader/ProductsAndCartLoader';
 import Shop from './components/Shop/Shop';
@@ -22,9 +23,15 @@ function App() {
           path: '/order',
           element: <Order></Order>,
           loader: productsAndCartLoader,
+        },
+        {
+          path: '/inventory',
+          element: <Inventory></Inventory>,
+
         }
       ]
-    }
+    },
+    { path: '*', element: <div>Nothing Found </div> }
   ])
 
   return (
